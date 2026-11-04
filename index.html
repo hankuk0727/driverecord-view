@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drive Record</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; padding: 16px;
+    background: #0f1318; color: #e8eaed;
+    font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  h1 { font-size: 18px; margin: 8px 0 0; }
+  #msg { color: #aab1ba; font-size: 15px; text-align: center; line-height: 1.5; }
+  #msg.error { color: #ff8a80; }
+  img { width: 100%; max-width: 720px; border-radius: 10px; display: none; }
+  a.btn {
+    display: none; padding: 14px 24px; border-radius: 10px;
+    background: #ffb547; color: #1a1306; font-weight: 700;
+    font-size: 16px; text-decoration: none;
+  }
+  #hint { display: none; color: #7d858f; font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<h1>Drive Record</h1>
+<div id="msg">사진을 불러오는 중…</div>
+<img id="photo" alt="차에서 보낸 사진">
+<a id="save" class="btn" download="drive-record.jpg">사진 저장</a>
+<div id="hint">저장이 안 되면 사진을 길게 눌러 저장하세요.</div>
+
+<script>
+const PROJECT_ID = "driverecord-demo";
+const API_KEY = "AIzaSyD7RVdlAlUha1_mi1TlMiv5AgbIjLlf7Nk";
+
+const msg = document.getElementById("msg");
+const photo = document.getElementById("photo");
+const save = document.getElementById("save");
+const hint = document.getElementById("hint");
+
+function fail(text) {
+  msg.textContent = text;
+  msg.className = "error";
+}
+
+async function load() {
+  const id = new URLSearchParams(location.search).get("id") || "";
+  if (!/^[a-z0-9]{20}$/.test(id)) {
+    fail("올바른 QR 코드가 아니에요. 차 화면의 QR을 다시 찍어 주세요.");
+    return;
+  }
+  const url = "https://firestore.googleapis.com/v1/projects/" + PROJECT_ID +
+    "/databases/(default)/documents/shares/" + id + "?key=" + API_KEY;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      fail("사진이 없거나 보관 시간(24시간)이 지났어요.");
+      return;
+    }
+    const doc = await res.json();
+    const b64 = doc.fields && doc.fields.image && doc.fields.image.stringValue;
+    if (!b64) {
+      fail("사진을 읽을 수 없어요.");
+      return;
+    }
+    const src = "data:image/jpeg;base64," + b64;
+    photo.src = src;
+    photo.style.display = "block";
+    save.href = src;
+    save.style.display = "inline-block";
+    hint.style.display = "block";
+    msg.textContent = "차에서 보낸 사진이에요.";
+  } catch (e) {
+    fail("인터넷 연결을 확인하고 다시 시도해 주세요.");
+  }
+}
+load();
+</script>
+</body>
+</html>
