@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drive Record 개인정보 처리방침</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1b1d21; --sub:#5b6068; --line:#e3e5e9; --accent:#00867f; --card:#f5f7f8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#131417; --fg:#eceef1; --sub:#a4a9b1; --line:#2c2f35; --accent:#3cc7bf; --card:#1c1e23; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font-family: -apple-system, "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
+         line-height:1.7; font-size:16px; }
+  main { max-width:760px; margin:0 auto; padding:32px 20px 64px; }
+  h1 { font-size:26px; margin:0 0 4px; }
+  h2 { font-size:19px; margin:36px 0 8px; padding-top:20px; border-top:1px solid var(--line); }
+  p, li { color:var(--fg); }
+  .sub { color:var(--sub); font-size:14px; }
+  ul { padding-left:20px; margin:8px 0; }
+  li { margin:4px 0; }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:15px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--card); }
+  .note { background:var(--card); border-radius:12px; padding:12px 16px; margin:12px 0; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Drive Record 개인정보 처리방침</h1>
+<p class="sub">시행일: 2026년 11월 6일 · 서비스 제공자: Roadnote (최중현)</p>
+
+<div class="note">
+Drive Record는 2026 현대자동차그룹 차량용 앱 개발 공모전에 출품한 시연용 앱입니다.
+이 문서는 앱이 어떤 정보를 어디에 쓰는지, 그리고 사용자가 어떤 선택을 할 수 있는지를 설명합니다.
+</div>
+
+<h2>1. 앱이 하는 일</h2>
+<p>
+Drive Record는 차량 화면에서 정차 중에 장면 사진을 저장하고, 그 장면의 시각·장소·속도·주행 모드를 함께 기록해 두는 앱입니다.
+저장한 장면은 &ldquo;폰으로 보내기&rdquo;를 통해 휴대폰으로 볼 수 있습니다.
+</p>
+
+<h2>2. 처리하는 정보</h2>
+<table>
+  <tr><th>정보</th><th>어디서 처리하나</th><th>이유</th></tr>
+  <tr>
+    <td>장면 사진, 시각, 장소 이름, 속도, 주행 모드, 메모</td>
+    <td><b>기기 안</b>에만 저장됩니다.</td>
+    <td>장면 기록과 &ldquo;다시 가기&rdquo; 기능</td>
+  </tr>
+  <tr>
+    <td>차량의 현재 위치, 속도, 주행 모드 (차량 신호)</td>
+    <td>기기 안에서만 읽습니다. 서버로 보내지 않습니다.</td>
+    <td>장면에 장소와 속도를 기록, 같은 장소 회상, 내비 연결</td>
+  </tr>
+  <tr>
+    <td>폰으로 보내는 사진 1장 (차량 정보 스티커를 켠 경우, 시각·장소 이름·속도·주행 모드·메모가 사진 위에 글자로 들어갑니다)</td>
+    <td>사용자가 &ldquo;동의하고 보내기&rdquo;를 누른 경우에만 <b>Google Firebase 서버</b>로 전송됩니다.</td>
+    <td>휴대폰에서 사진을 볼 수 있게 하기 위해</td>
+  </tr>
+  <tr>
+    <td>익명 로그인 번호 (이름·이메일·전화번호 없음)</td>
+    <td>Firebase Authentication</td>
+    <td>업로드 권한 확인</td>
+  </tr>
+</table>
+<p>이름, 연락처, 계정 정보는 수집하지 않습니다. 광고나 마케팅에 쓰지 않으며, 운전 행동 데이터를 분석하거나 판매하지 않습니다.</p>
+
+<h2>3. 위치정보 안내</h2>
+<ul>
+  <li>차량(또는 기기)의 현재 위치는 장면을 저장할 때 &ldquo;장소 이름&rdquo;을 만들고, 같은 장소(약 200m 이내)의 지난 장면을 찾는 데만 씁니다.</li>
+  <li>위치 좌표는 앱 안(기기)에만 저장되고, 서버로 따로 보내지 않습니다.</li>
+  <li>&ldquo;폰으로 보내기&rdquo;를 하면 장소 <b>이름</b>이 사진 위의 글자로 함께 올라갑니다(스티커를 켠 경우).</li>
+  <li>&ldquo;다시 가기&rdquo;를 누르면 저장해 둔 위치를 차량 내비게이션에 전달해 길 안내를 요청합니다.</li>
+</ul>
+
+<h2>4. 보관 기간과 삭제</h2>
+<ul>
+  <li><b>기기 안의 장면</b>: 사용자가 앱에서 &ldquo;삭제&rdquo;를 누르거나 앱을 지우면 없어집니다.</li>
+  <li><b>서버에 올린 사진</b>: 올린 뒤 <b>24시간</b> 동안만 휴대폰에서 볼 수 있고, 그 뒤에는 볼 수 없습니다.</li>
+  <li>이 앱은 공모전 시연용 서버를 사용하므로 자동 삭제 기능은 쓰지 않고, 보기 기간이 지난 데이터는 운영자가 직접 확인해서 삭제합니다. 더 빨리 지워 달라는 요청은 아래 문의처로 보내 주세요.</li>
+</ul>
+
+<h2>5. 누가 볼 수 있나</h2>
+<ul>
+  <li>사진을 올리면 화면에 QR 코드(웹 주소)가 나타납니다. <b>그 주소를 아는 사람은 누구나</b> 24시간 동안 사진을 볼 수 있습니다. 주소는 추측하기 어려운 20자 무작위 값입니다.</li>
+  <li>QR 코드를 다른 사람에게 보여 주거나 공유하지 않도록 주의해 주세요.</li>
+  <li>사진에 다른 사람의 얼굴이나 자동차 번호판이 보일 수 있습니다. 올리기 전에 확인해 주세요.</li>
+</ul>
+
+<h2>6. 제3자 제공과 처리 위탁</h2>
+<table>
+  <tr><th>받는 곳</th><th>하는 일</th></tr>
+  <tr><td>Google (Firebase Firestore, Authentication)</td><td>업로드한 사진 보관(24시간 보기용), 익명 로그인. 서버는 해외에 있을 수 있습니다.</td></tr>
+  <tr><td>GitHub Pages</td><td>휴대폰에서 사진을 보여 주는 웹 페이지 호스팅</td></tr>
+</table>
+<p>위 목적 외의 제3자에게 정보를 제공하지 않습니다.</p>
+
+<h2>7. 사용자의 선택</h2>
+<ul>
+  <li>&ldquo;폰으로 보내기&rdquo;는 안내 창에서 동의했을 때만 사진이 올라갑니다. 동의하지 않아도 앱의 다른 기능은 모두 쓸 수 있습니다.</li>
+  <li>한 번 동의한 내용은 기기에 기억됩니다. 다시 동의 창을 보려면 앱 정보에서 &ldquo;데이터 삭제&rdquo;를 하면 됩니다.</li>
+  <li>서버에 올라간 사진의 삭제나 열람 문의는 아래 이메일로 보내 주세요.</li>
+</ul>
+
+<h2>8. 안전을 위한 조치</h2>
+<ul>
+  <li>기기와 서버 사이의 전송은 HTTPS(암호화)로 합니다.</li>
+  <li>서버에는 사진과 만료 시각만 올라가며, 이름·이메일 같은 개인 식별 정보는 올리지 않습니다.</li>
+  <li>앱은 운전 중 주의가 분산되지 않도록 주행 중에는 큰 캡처 버튼 하나만 보여 줍니다.</li>
+</ul>
+
+<h2>9. 문의처</h2>
+<p>
+개인정보와 위치정보에 관한 문의, 삭제 요청<br>
+Roadnote 최중현 · <a href="mailto:roadnoteteam@gmail.com">roadnoteteam@gmail.com</a>
+</p>
+
+<h2>10. 변경</h2>
+<p>이 방침이 바뀌면 이 페이지에 새 시행일과 함께 올립니다.</p>
+
+</main>
+</body>
+</html>
